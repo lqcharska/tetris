@@ -9,4 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="baby_pink">#fecdda</color>
+    <color name="transparent_babe">"@android:color/transparent"</color>
 </resources>
