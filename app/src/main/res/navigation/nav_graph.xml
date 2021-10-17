@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:startDestination="@id/get_started_destination">
+
+    <fragment
+        android:id="@+id/get_started_destination"
+        android:name="com.example.tetris.get_started.GetStartedFragment"
+        android:label="get_started_fragment"
+        tools:layout="@layout/get_started_fragment">
+        <action
+            android:id="@+id/action_get_started_to_game"
+            app:destination="@id/game_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/game_destination"
+        android:name="com.example.tetris.get_started.GameFragment"
+        android:label="game_fragment"
+        tools:layout="@layout/game_fragment">
+        <action
+            android:id="@+id/action_game_to_end"
+            app:destination="@id/end_destination"
+            app:popUpTo="@id/get_started_destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/end_destination"
+        android:name="com.example.tetris.end.EndFragment"
+        android:label="end_fragment"
+        tools:layout="@layout/end_fragment">
+        <action
+            android:id="@+id/action_return_to_game"
+            app:destination="@id/game_destination"
+            app:popUpTo="@id/get_started_destination" />
+    </fragment>
+</navigation>

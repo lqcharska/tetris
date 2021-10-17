@@ -1,75 +1,74 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/playAgain_button"
-        android:layout_width="114dp"
-        android:layout_height="57dp"
-        android:text="Play again"
-        android:textColor="@color/baby_pink"
-        app:backgroundTint="@color/transparent_babe"
-        app:icon="@drawable/play_again"
-        app:iconSize="20dp"
-        app:iconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.893" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/end_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".end.EndFragment">
 
-    <Button
-        android:id="@+id/exitGame_button"
-        android:layout_width="114dp"
-        android:layout_height="57dp"
-        android:text="Exit"
-        android:textColor="@color/baby_pink"
-        app:backgroundTint="@color/transparent_babe"
-        app:icon="@drawable/exit"
-        app:iconSize="20dp"
-        app:iconTint="@color/black"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.797" />
+        <Button
+            android:id="@+id/playAgain_button"
+            android:layout_width="114dp"
+            android:layout_height="57dp"
+            android:text="@string/play_again_button"
+            style="@style/ReturnButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.893" />
 
-    <TextView
-        android:id="@+id/end_text"
-        android:layout_width="167dp"
-        android:layout_height="52dp"
-        android:fontFamily="sans-serif-condensed-light"
-        android:lineSpacingExtra="8sp"
-        android:text="Your score: "
-        android:textColor="#020202"
-        android:textSize="34sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.347" />
+        <Button
+            android:id="@+id/exitGame_button"
+            android:layout_width="114dp"
+            android:layout_height="57dp"
+            android:text="@string/exit_button"
+            style="@style/ExitButton"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.797" />
 
-    <TextView
-        android:id="@+id/scoreEnd_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-condensed-light"
-        android:lineSpacingExtra="8sp"
-        android:text="Score"
-        android:textColor="#1E1D1D"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:typeface="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.42" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/end_text"
+            android:layout_width="167dp"
+            android:layout_height="52dp"
+            android:fontFamily="sans-serif-condensed-light"
+            android:lineSpacingExtra="8sp"
+            android:text="Your score: "
+            android:textColor="#020202"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.347" />
+
+        <TextView
+            android:id="@+id/scoreEnd_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed-light"
+            android:lineSpacingExtra="8sp"
+            android:text="Score"
+            android:textColor="#1E1D1D"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:typeface="normal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.42" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

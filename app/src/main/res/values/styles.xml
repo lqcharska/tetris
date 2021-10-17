@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Button Styles -->
+    <style name="PauseButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/baby_pink</item>
+        <item name="icon">@drawable/pause</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="EndButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/baby_pink</item>
+        <item name="icon">@drawable/exit</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="ReturnButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/baby_pink</item>
+        <item name="icon">@drawable/play_again</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="ExitButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name="android:textColor">@color/baby_pink</item>
+        <item name="icon">@drawable/exit</item>
+        <item name="iconSize">20dp</item>
+        <item name="iconTint">@color/black</item>
+    </style>
+</resources>

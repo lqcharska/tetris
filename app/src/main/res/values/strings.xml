@@ -1,3 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">Tetris</string>
+    <string name="play_button">Play</string>
+    <string name="pause_button">Pause</string>
+    <string name="end_button">End</string>
+    <string name="exit_button">Exit</string>
+    <string name="play_again_button">Play again!</string>
 </resources>
