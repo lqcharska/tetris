@@ -4,14 +4,14 @@
     <style name="PauseButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/baby_pink</item>
         <item name="icon">@drawable/pause</item>
-        <item name="iconSize">20dp</item>
+        <item name="iconSize">12dp</item>
         <item name="iconTint">@color/black</item>
     </style>
 
     <style name="EndButton" parent="Widget.AppCompat.Button.Borderless">
         <item name="android:textColor">@color/baby_pink</item>
         <item name="icon">@drawable/exit</item>
-        <item name="iconSize">20dp</item>
+        <item name="iconSize">12dp</item>
         <item name="iconTint">@color/black</item>
     </style>
 
