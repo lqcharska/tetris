@@ -41,8 +41,6 @@
         <Button
             android:id="@+id/end_button"
             style="@style/EndButton"
-            android:layout_width="94dp"
-            android:layout_height="48dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="4dp"
             android:text="@string/end_button"
@@ -57,8 +55,6 @@
         <Button
             android:id="@+id/pause_button"
             style="@style/PauseButton"
-            android:layout_width="94dp"
-            android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:layout_marginBottom="4dp"
             android:text="@string/pause_button"
@@ -72,13 +68,48 @@
 
         <ImageView
             android:id="@+id/game_space_view"
-            android:layout_width="337dp"
-            android:layout_height="570dp"
+            android:layout_width="303dp"
+            android:layout_height="439dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.33" />
+
+        <Button
+            android:id="@+id/move_right_button"
+            style="@style/RotateButton"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp"
+            android:text="@string/move_right_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.95"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.885" />
+
+        <Button
+            android:id="@+id/move_left_button"
+            style = "@style/MoveLeftButton"
+            android:text="@string/move_left_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.885" />
+
+        <Button
+            android:id="@+id/rotate_button"
+            style="@style/MoveRightButton"
+            android:text="@string/rotate_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/move_right_button"
+            app:layout_constraintHorizontal_bias="0.505"
+            app:layout_constraintStart_toEndOf="@+id/move_left_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.885" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

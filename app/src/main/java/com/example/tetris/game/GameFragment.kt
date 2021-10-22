@@ -60,8 +60,8 @@ class GameFragment : Fragment() {
         gameViewHeight = binding.gameSpaceView.layoutParams.height
 
         // Creating space for game
-        bitmap = Bitmap.createBitmap(gameViewWidth, gameViewHeight, Bitmap.Config.ARGB_8888)
-        canvas = Canvas(bitmap)
+//        bitmap = Bitmap.createBitmap(gameViewWidth, gameViewHeight, Bitmap.Config.ARGB_8888)
+//        canvas = Canvas(bitmap)
         paint = Paint()
         paint.color = Color.MAGENTA
         paint.style = Paint.Style.STROKE
@@ -74,8 +74,11 @@ class GameFragment : Fragment() {
         })
         // Observe
         gameModel.gameBoard.observe(viewLifecycleOwner, Observer { newGameBoard ->
+            bitmap = Bitmap.createBitmap(gameViewWidth, gameViewHeight, Bitmap.Config.ARGB_8888)
+            canvas = Canvas(bitmap)
+
             var counterI : Int = 0
-            var counterJ : Int = 0
+            var counterJ : Int
             val multiplierI : Float = (gameViewWidth / 10).toFloat()
             val multiplierJ : Float = (gameViewHeight / 20).toFloat()
             for(i in newGameBoard){
@@ -96,8 +99,21 @@ class GameFragment : Fragment() {
 
         // Button action
         binding.endButton.setOnClickListener {
+
+
         }
         binding.pauseButton.setOnClickListener {
+
+
+        }
+        binding.moveRightButton.setOnClickListener{
+
+        }
+        binding.moveLeftButton.setOnClickListener{
+
+        }
+        binding.rotateButton.setOnClickListener {
+
         }
 
         // Chronometer

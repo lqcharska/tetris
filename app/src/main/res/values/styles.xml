@@ -2,6 +2,8 @@
 <resources>
     <!-- Button Styles -->
     <style name="PauseButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name= "android:layout_width">94dp</item>
+        <item name= "android:layout_height">48dp</item>
         <item name="android:textColor">@color/baby_pink</item>
         <item name="icon">@drawable/pause</item>
         <item name="iconSize">12dp</item>
@@ -9,10 +11,30 @@
     </style>
 
     <style name="EndButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name= "android:layout_width">94dp</item>
+        <item name= "android:layout_height">48dp</item>
         <item name="android:textColor">@color/baby_pink</item>
         <item name="icon">@drawable/exit</item>
         <item name="iconSize">12dp</item>
         <item name="iconTint">@color/black</item>
+    </style>
+
+    <style name="MoveRightButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name= "android:layout_width">91dp</item>
+        <item name= "android:layout_height">52dp</item>
+        <item name="android:textColor">@color/baby_pink</item>
+    </style>
+
+    <style name="MoveLeftButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name= "android:layout_width">91dp</item>
+        <item name= "android:layout_height">52dp</item>
+        <item name="android:textColor">@color/baby_pink</item>
+    </style>
+
+    <style name="RotateButton" parent="Widget.AppCompat.Button.Borderless">
+        <item name= "android:layout_width">91dp</item>
+        <item name= "android:layout_height">52dp</item>
+        <item name="android:textColor">@color/baby_pink</item>
     </style>
 
     <style name="ReturnButton" parent="Widget.AppCompat.Button.Borderless">
