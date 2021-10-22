@@ -102,8 +102,6 @@ class GameViewModel() : ViewModel(){
         )
         var coordinateX : Int = 4
         var coordinateY : Int = 2
-        var ifFly : Boolean = false
-        var ifLay : Boolean = false
         lateinit var currentShape : BlockShape //TODO co z tym zrobic
         lateinit var currentCoordinates : ArrayList<ArrayList<Int>>
         var shapeList: MutableList<BlockShape> = mutableListOf(
@@ -139,28 +137,30 @@ class GameViewModel() : ViewModel(){
             return newCoordinates
         }
 
-        fun showMe(){}
 
         fun rotateMe(){}
-        fun moveMeRight(){}
-        fun moveMeLeft(){}
+        fun moveMeRight(){
+            coordinateX += 1
+        }
+        fun moveMeLeft(){
+            coordinateX -= 1
+        }
         fun moveMeDown(){
             coordinateY += 1
         }
 
-        fun ifCollision(){
-
-        }
-
-
-        fun canIRotate(){}
-        fun canIMoveRight(){}
-        fun canIMoveLeft(){}
-        fun canIMoveDown(deadGameBoard : ArrayList<ArrayList<Int>>): Boolean {
-            coordinateY += 1
+        fun checkCollision(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean{
             var collision : Boolean = false
 
             for(point in getOccupiedCoordinates()){
+                if (point[0] >= deadGameBoard[0].size){
+                    collision = true
+                    break
+                }
+                if (point[0] < 0) {
+                    collision = true
+                    break
+                }
                 if (point[1] >= deadGameBoard.size){
                     collision = true
                     break
@@ -170,16 +170,61 @@ class GameViewModel() : ViewModel(){
                     break
                 }
             }
+            return collision
+        }
+
+        fun canIRotate(){}
+        fun canIMoveRight(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean{
+            coordinateX += 1
+
+            val collision : Boolean = checkCollision(deadGameBoard)
+
+            coordinateX -= 1
+
+            return !collision
+        }
+
+        fun canIMoveLeft(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean{
+            coordinateX -= 1
+
+            val collision : Boolean = checkCollision(deadGameBoard)
+
+            coordinateX += 1
+
+            return !collision
+        }
+
+        fun canIMoveDown(deadGameBoard : ArrayList<ArrayList<Int>>): Boolean {
+            coordinateY += 1
+
+            val collision : Boolean = checkCollision(deadGameBoard)
+
             coordinateY -= 1
 
-            if (collision) return false
-
-            return true
+            return !collision
         }
 
         fun moveDown(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean {
             if(canIMoveDown(deadGameBoard)) {
                 moveMeDown()
+                return true
+            } else {
+                return false
+            }
+        }
+
+        fun moveRight(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean {
+            if(canIMoveRight(deadGameBoard)) {
+                moveMeRight()
+                return true
+            } else {
+                return false
+            }
+        }
+
+        fun moveLeft(deadGameBoard : ArrayList<ArrayList<Int>>) : Boolean {
+            if(canIMoveLeft(deadGameBoard)) {
+                moveMeLeft()
                 return true
             } else {
                 return false
@@ -204,6 +249,54 @@ class GameViewModel() : ViewModel(){
     override fun onCleared() {
         super.onCleared()
         Log.i("GameViewModel", "GameViewModel destroyed!")
+    }
+
+    fun refreshGameBoard(){
+        var temporaryGameBoard : ArrayList<ArrayList<Int>> = arrayListOf(
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+            arrayListOf(0,0,0,0,0,0,0,0,0,0),
+        )
+        for (i in 0..deadGameBoard.lastIndex){
+            for (j in 0..deadGameBoard[i].lastIndex) {
+                temporaryGameBoard[i][j] = deadGameBoard[i][j]
+            }
+        }
+
+//        block.getOccupiedCoordinates() -> { (4,4), (4,3), ... }
+        for(point in block.getOccupiedCoordinates()){
+            temporaryGameBoard[point[1]][point[0]] = 1
+        }
+
+        // assign temporary game board to main game board
+        _gameBoard.value = temporaryGameBoard
+    }
+
+    fun moveBlockRight(){
+        block.moveRight(deadGameBoard)
+        refreshGameBoard()
+    }
+
+    fun moveBlockLeft(){
+        block.moveLeft(deadGameBoard)
+        refreshGameBoard()
     }
 
     fun oneTickGame(){
@@ -243,46 +336,9 @@ class GameViewModel() : ViewModel(){
             }
 
         }
+        refreshGameBoard()
 
-        var temporaryGameBoard : ArrayList<ArrayList<Int>> = arrayListOf(
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-            arrayListOf(0,0,0,0,0,0,0,0,0,0),
-        )
-        for (i in 0..deadGameBoard.lastIndex){
-            for (j in 0..deadGameBoard[i].lastIndex) {
-                temporaryGameBoard[i][j] = deadGameBoard[i][j]
-            }
-        }
 
-//        block.getOccupiedCoordinates() -> { (4,4), (4,3), ... }
-        for(point in block.getOccupiedCoordinates()){
-            temporaryGameBoard[point[1]][point[0]] = 1
-        }
-
-//        val temporaryGameBoard : ArrayList<ArrayList<Int>> = ArrayList(deadGameBoard)
-        // draw block on temporary game board
-//        temporaryGameBoard[score.value!!][4] = 1
-
-        // assign temporary game board to main game board
-        _gameBoard.value = temporaryGameBoard
     }
 
 }

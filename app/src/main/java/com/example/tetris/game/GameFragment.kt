@@ -107,10 +107,10 @@ class GameFragment : Fragment() {
 
         }
         binding.moveRightButton.setOnClickListener{
-
+            gameModel.moveBlockRight()
         }
         binding.moveLeftButton.setOnClickListener{
-
+            gameModel.moveBlockLeft()
         }
         binding.rotateButton.setOnClickListener {
 
