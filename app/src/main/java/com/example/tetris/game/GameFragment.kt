@@ -1,28 +1,32 @@
 package com.example.tetris.get_started
 
 
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
-import android.graphics.Paint
+import android.graphics.*
 import android.graphics.drawable.BitmapDrawable
+import android.media.MediaPlayer
+import android.opengl.ETC1.getHeight
 import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
+import android.provider.MediaStore
+import android.util.DisplayMetrics
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Chronometer
 import android.widget.Chronometer.OnChronometerTickListener
+import android.widget.Toast
 import androidx.annotation.RequiresApi
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.NavHostFragment
 import com.example.tetris.R
 import com.example.tetris.databinding.GameFragmentBinding
 import com.example.tetris.game.GameViewModel
+
 
 class GameFragment : Fragment() {
 
@@ -35,6 +39,8 @@ class GameFragment : Fragment() {
     private lateinit var bitmap : Bitmap
     private lateinit var canvas : Canvas
     private lateinit var paint : Paint
+
+    private lateinit var music : MediaPlayer
 
 
     private var gameViewWidth : Int = 0
@@ -56,18 +62,29 @@ class GameFragment : Fragment() {
             container,
             false
         )
-        gameViewWidth = binding.gameSpaceView.layoutParams.width
-        gameViewHeight = binding.gameSpaceView.layoutParams.height
 
-        // Creating space for game
-//        bitmap = Bitmap.createBitmap(gameViewWidth, gameViewHeight, Bitmap.Config.ARGB_8888)
-//        canvas = Canvas(bitmap)
+        music= MediaPlayer.create(activity, R.raw.tetris_theme_song)
+        music.start()
+        music.isLooping = true
+
+        val displayMetrics = DisplayMetrics()
+        activity?.windowManager?.defaultDisplay?.getMetrics(displayMetrics)
+        gameViewWidth = (displayMetrics.widthPixels * 0.85).toInt()
+        gameViewHeight = (displayMetrics.heightPixels * 0.7).toInt()
+
         paint = Paint()
-        paint.color = Color.MAGENTA
         paint.style = Paint.Style.STROKE
+        paint.strokeJoin = Paint.Join.ROUND
+        paint.strokeMiter = 5F
+        paint.strokeWidth = 5F
+        paint.color = Color.parseColor("#fccad7")
 
         gameModel = ViewModelProvider(this).get(GameViewModel::class.java)
 
+        // Observe
+        gameModel.gameFinishFlag.observe(viewLifecycleOwner, Observer <Boolean> { gameFinish ->
+            if(gameFinish) onGameFinish()
+        })
         // Observe
         gameModel.score.observe(viewLifecycleOwner, Observer { newScore ->
             binding.scoreText.text = newScore.toString()
@@ -85,6 +102,23 @@ class GameFragment : Fragment() {
                 counterJ = 0
                 for(j in i){
                     if (j == 1){
+//                        val paint = Paint().apply {
+//                            isAntiAlias = true
+//                            style = Paint.Style.FILL
+//                            // linear gradient shader
+//                            shader = LinearGradient(
+//                                counterJ.toFloat()*multiplierI,
+//                                counterI.toFloat()*multiplierJ,
+//                                (counterJ+1).toFloat()*multiplierI,
+//                                (counterI+1).toFloat()*multiplierJ,
+//                                // color0, sRGB color at the start of the gradient line
+//                                Color.parseColor("#FFC6FF"),
+//                                // color1, sRGB color at the end of the gradient line
+//                                Color.parseColor("#BDB2FF"),
+//                                // shader tiling mode
+//                                Shader.TileMode.CLAMP
+//                            )
+//                        }
                         canvas.drawRect(counterJ.toFloat()*multiplierI,
                             counterI.toFloat()*multiplierJ,
                             (counterJ+1).toFloat()*multiplierI, (counterI+1).toFloat()*multiplierJ, paint)
@@ -99,12 +133,7 @@ class GameFragment : Fragment() {
 
         // Button action
         binding.endButton.setOnClickListener {
-
-
-        }
-        binding.pauseButton.setOnClickListener {
-
-
+            onGameFinish()
         }
         binding.moveRightButton.setOnClickListener{
             gameModel.moveBlockRight()
@@ -113,7 +142,7 @@ class GameFragment : Fragment() {
             gameModel.moveBlockLeft()
         }
         binding.rotateButton.setOnClickListener {
-
+            gameModel.rotateBlock()
         }
 
         // Chronometer
@@ -132,6 +161,15 @@ class GameFragment : Fragment() {
     }
 
 
+    private fun onGameFinish(){
+        Toast.makeText(activity, "Game has just finished", Toast.LENGTH_SHORT).show()
+        music.stop()
+        val action = GameFragmentDirections.actionGameToEnd()
+        action.score = gameModel.score.value?:0
+        NavHostFragment.findNavController(this).navigate(action)
+        gameModel.onGameFinishComplete()
+
+    }
 
 
     private fun startChronometer(){
@@ -141,20 +179,6 @@ class GameFragment : Fragment() {
             running = true
         }
     }
-    fun pauseChronometer(){
-        if(running){
-            chronometer.stop()
-            val pauseOffset = SystemClock.elapsedRealtime() - chronometer.base
-            running = false
-        }
-    }
-
-    fun resetChronometer(){
-        chronometer.base = SystemClock.elapsedRealtime()
-        pauseOffset = 0
-    }
-
-
 
 
 }

@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="baby_pink">#fecdda</color>
+    <color name="darker_baby_pink">#fccad7</color>
+    <color name="block_start">#ffc6ff</color>
+    <color name="block_end">#bdb2ff</color>
 </resources>
