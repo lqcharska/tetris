@@ -6,4 +6,8 @@
     <string name="end_button">End</string>
     <string name="exit_button">Exit</string>
     <string name="play_again_button">Play again!</string>
+    <string name="score_text">Score: %1$d</string>
+    <string name="move_right_button">Right</string>
+    <string name="move_left_button">Left</string>
+    <string name="rotate_button">Rotate</string>
 </resources>

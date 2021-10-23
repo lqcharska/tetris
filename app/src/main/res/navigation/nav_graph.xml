@@ -32,5 +32,9 @@
             android:id="@+id/action_return_to_game"
             app:destination="@id/game_destination"
             app:popUpTo="@id/get_started_destination" />
+        <argument
+            android:name="score"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>

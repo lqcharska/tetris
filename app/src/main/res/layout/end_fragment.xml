@@ -11,29 +11,16 @@
 
         <Button
             android:id="@+id/playAgain_button"
+            style="@style/ReturnButton"
             android:layout_width="114dp"
             android:layout_height="57dp"
             android:text="@string/play_again_button"
-            style="@style/ReturnButton"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.893" />
-
-        <Button
-            android:id="@+id/exitGame_button"
-            android:layout_width="114dp"
-            android:layout_height="57dp"
-            android:text="@string/exit_button"
-            style="@style/ExitButton"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.797" />
+            app:layout_constraintVertical_bias="0.814" />
 
         <TextView
             android:id="@+id/end_text"

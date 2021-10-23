@@ -9,61 +9,101 @@
         android:layout_height="match_parent"
         tools:context=".game.GameFragment">
 
-
-        <TextView
-            android:id="@+id/score_text"
+        <Chronometer
+            android:id="@+id/chronometer"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Score: "
+            android:layout_marginTop="4dp"
+            android:layout_marginEnd="8dp"
+            android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pause_button"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.976"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.022" />
 
         <TextView
-            android:id="@+id/time_text"
+            android:id="@+id/score_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:text="Time:  "
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="4dp"
+            android:text="@string/score_text"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/pause_button"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.043"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.049" />
+            app:layout_constraintVertical_bias="0.022"
+            app:layout_goneMarginStart="8dp"
+            app:layout_goneMarginTop="4dp" />
 
         <Button
             android:id="@+id/end_button"
             style="@style/EndButton"
-            android:layout_width="108dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginEnd="1dp"
             android:text="@string/end_button"
+            android:textSize="12sp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.972"
+            app:layout_constraintHorizontal_bias="0.308"
+            app:layout_constraintStart_toEndOf="@+id/score_text"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.002"
+            tools:visibility="invisible" />
+
+        <ImageView
+            android:id="@+id/game_space_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.37" />
 
         <Button
-            android:id="@+id/pause_button"
-            style="@style/PauseButton"
-            android:layout_width="108dp"
-            android:layout_height="48dp"
-            android:layout_marginTop="8dp"
-            android:text="@string/pause_button"
+            android:id="@+id/move_right_button"
+            style="@style/RotateButton"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="2dp"
+            android:text="@string/move_right_button"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/end_button"
-            app:layout_constraintHorizontal_bias="0.921"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.974"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.0" />
+            app:layout_constraintVertical_bias="0.995" />
+
+        <Button
+            android:id="@+id/move_left_button"
+            style="@style/MoveLeftButton"
+            android:layout_marginStart="8dp"
+            android:text="@string/move_left_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.044"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.992" />
+
+        <Button
+            android:id="@+id/rotate_button"
+            style="@style/MoveRightButton"
+            android:layout_marginBottom="2dp"
+            android:text="@string/rotate_button"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/move_right_button"
+            app:layout_constraintHorizontal_bias="0.484"
+            app:layout_constraintStart_toEndOf="@+id/move_left_button"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.995" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
